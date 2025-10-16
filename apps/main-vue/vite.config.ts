@@ -20,6 +20,16 @@ export default defineConfig({
       //   changeOrigin: true,
       //   rewrite: (path) => path.replace(/^\/api/, '')
       // }
+      // '/next-proxy': {
+      //   target: 'http://localhost:3000',
+      //   changeOrigin: true,
+      //   rewrite: (path) => path.replace(/^\/next-proxy/, '/'),
+      // },
+      '/_next': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/_next/, '_next'),
+      },
     }
   },
   resolve: {

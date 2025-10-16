@@ -31,6 +31,14 @@
           <a-menu-item key="/vue3-sub/state">State</a-menu-item>
         </a-sub-menu>
         
+        <!-- next-react 子菜单 -->
+        <a-sub-menu v-if="degrade" key="next-react">
+          <template #icon>
+            <DesktopOutlined />
+          </template>
+          <template #title>Next-React</template>
+          <a-menu-item key="/next-react-sub">Home</a-menu-item>
+        </a-sub-menu>
         <!-- Vite 子菜单 -->
         <!-- <a-sub-menu v-if="degrade" key="vite">
           <template #icon>

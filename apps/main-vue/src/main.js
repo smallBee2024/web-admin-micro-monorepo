@@ -50,46 +50,59 @@ const attrs = isProduction ? { src: hostMap("//localhost:8000/") } : {};
  * preloadApp、startApp的配置会基于这个配置做覆盖
  */
 
-setupApp({
-  name: "vue3",
-  url: hostMap("//localhost:8002/"),
-  attrs,
-  exec: true,
-  alive: true,
-  plugins: [
-    // {
-    //   cssExcludes: [
-    //     "https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css",
-    //   ],
-    // },
-  ],
-  props,
-  // 引入了的第三方样式不需要添加credentials
-  fetch: (url, options) => {
-    console.log(url, options);
-    return url.includes(hostMap("//localhost:8002/"))
-      ? credentialsFetch(url, options)
-      : window.fetch(url, options)
-  },
-  degrade,
-  ...lifecycles,
-});
 // setupApp({
-//   name: "vite",
-//   url: hostMap("//localhost:8001/"),
+//   name: "vue3",
+//   url: hostMap("//localhost:8002/"),
 //   attrs,
 //   exec: true,
+//   alive: true,
+//   plugins: [
+//     // {
+//     //   cssExcludes: [
+//     //     "https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css",
+//     //   ],
+//     // },
+//   ],
 //   props,
-//   fetch: credentialsFetch,
+//   // 引入了的第三方样式不需要添加credentials
+//   // fetch: (url, options) => {
+//   //   console.log(url, options);
+//   //   return url.includes(hostMap("//localhost:8002/"))
+//   //     ? credentialsFetch(url, options)
+//   //     : window.fetch(url, options)
+//   // },
 //   degrade,
 //   ...lifecycles,
 // });
+setupApp({
+  name: "next-react",
+  url: hostMap("//localhost:3000/"),
+  // attrs,
+  exec: true,
+  // props,
+  // fetch: credentialsFetch,
+  // fetch(url, options) {
+  //   // 把子应用请求通过主应用代理出去（同源）
+  //   // const proxyUrl = url.replace("http://localhost:3000", "");
+  //   // console.log("👉 代理请求:", proxyUrl);
+  //   // return window.fetch(proxyUrl, options).then((res) => {
+  //   //   console.log("✅ 代理响应:", res.status, res.url);
+  //   //   return res;
+  //   // });
+  //   return window.fetch(url, options);
+  // },
+  // degrade,
+  ...lifecycles,
+});
 
 if (window.localStorage.getItem("preload") !== "false") {
   if (window.Proxy) {
-    preloadApp({
-      name: "vue3",
-    });
+    // preloadApp({
+    //   name: "vue3",
+    // });
+    // preloadApp({
+    //   name: "next-react",
+    // });
   }
 }
 

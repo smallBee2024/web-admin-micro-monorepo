@@ -3,8 +3,10 @@ import Home from "../views/Home.vue";
 import Multiple from "../views/Multiple.vue";
 import Vue3 from "../views/Vue3.vue";
 import Vue3Sub from "../views/Vue3-sub.vue";
-import Vite from "../views/Vite.vue";
-import ViteSub from "../views/Vite-sub.vue";
+// import Vite from "../views/Vite.vue";
+// import ViteSub from "../views/Vite-sub.vue";
+import Next from "../views/Next.vue";
+import NextSub from "../views/Next-sub.vue";
 
 const basename = process.env.NODE_ENV === "production" ? "/demo-main-vue/" : "";
 
@@ -34,15 +36,16 @@ const routes = [
     component: Vue3Sub,
   },
   {
-    path: "/vite",
-    name: "vite",
-    component: Vite,
+    path: "/next-react",
+    name: "next-react",
+    component: Next,
   },
   {
-    path: "/vite-sub/:path",
-    name: "vite-sub",
-    component: ViteSub,
+    path: "/next-react-sub/:path",
+    name: "next-react-sub",
+    component: NextSub,
   },
+
 ];
 
 // 创建路由实例并传递 `routes` 配置
