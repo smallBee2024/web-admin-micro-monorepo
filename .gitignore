@@ -1,0 +1,65 @@
+# Node dependencies
+node_modules/
+/apps/*/node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Build outputs
+/dist/
+/build/
+/out/
+/lib/
+/.cache/
+/.temp/
+/tmp/
+/temp/
+coverage/
+.eslintcache
+.stylelintcache
+.tsbuildinfo
+
+# Frameworks
+.next/
+.nuxt/
+.vite/
+.sass-cache/
+
+# Monorepo/Turborepo
+.turbo/
+.pnpm-store/
+
+turbo-*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor
+.vscode/
+.idea/
+*.sw*
+*.swo
+
+# Misc
+*.tgz
+
+# Package manager lockfiles (ignore npm/yarn lock; keep pnpm lockfile)
+package-lock.json
+yarn.lock
