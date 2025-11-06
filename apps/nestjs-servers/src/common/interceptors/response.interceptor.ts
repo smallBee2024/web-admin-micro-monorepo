@@ -17,8 +17,10 @@ interface Data<T> {
 @Injectable()
 export class ResponseInterceptor<T> implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<Data<T>> {
+    console.log('ResponseInterceptor， 进入拦截器');
     return next.handle().pipe(
       map(data => {
+        console.log('ResponseInterceptor， 离开拦截器');
         return {
           code: 200,
           message: 'success',
