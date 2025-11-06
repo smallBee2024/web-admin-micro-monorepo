@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "turbo run start --parallel --no-cache",
+    "dev:nestjs": "turbo run start --filter=wujie-demo-nestjs-server",
     "doc": "turbo run docs:dev --filter=wujie-doc",
     "build": "turbo run build --filter=\"wujie-*\" --filter=wujie",
     "clean": "rimraf node_modules **/*/node_modules",

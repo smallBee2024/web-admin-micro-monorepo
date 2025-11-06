@@ -4,9 +4,16 @@
 import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { UsersModule } from './modules/users/users.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
+// import { DevtoolsModule } from '@nestjs/devtools-integration';
 
 @Module({
-  imports: [UsersModule],
+  imports: [
+    // 配置 Devtools 集成
+    // DevtoolsModule.register({
+    //   port: 4200,
+    // }),
+    UsersModule
+  ],
   controllers: [],
   providers: [],
 })

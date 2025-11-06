@@ -1,4 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Inject } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Inject,
+  HttpException,
+  HttpStatus,
+  ParseIntPipe
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -23,6 +35,7 @@ export class UsersController {
 
   @Get()
   findAll() {
+    console.log('findAll users');
     // console.log(typeof this.usersService)
     // console.log(this.aa)
     // console.log(this.dbConfig)
@@ -41,8 +54,10 @@ export class UsersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    console.log('findOne', id, typeof id);
     return this.usersService.findOne(+id);
+    // throw new HttpException('This is a test error', HttpStatus.BAD_REQUEST);
   }
 
   @Patch(':id')
