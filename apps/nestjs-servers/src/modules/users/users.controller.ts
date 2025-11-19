@@ -14,11 +14,15 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { ConfigService } from '@nestjs/config';
+// import config from '../../config';
+
 
 @Controller('users')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
+    private readonly configService: ConfigService,
     @Inject('AA') private readonly aa: any,
     @Inject('DB_CONFIG') private readonly dbConfig: any,
     @Inject('ASYNC_CONNECTION') private readonly connection: any,
@@ -35,7 +39,10 @@ export class UsersController {
 
   @Get()
   findAll() {
-    console.log('findAll users');
+    console.log(this.configService.get('database.host'));
+    console.log(this.configService.get('database.port'));
+    // console.log('config11111222', config);
+    console.log('findAll users', process.env.DB_HOST);
     // console.log(typeof this.usersService)
     // console.log(this.aa)
     // console.log(this.dbConfig)
