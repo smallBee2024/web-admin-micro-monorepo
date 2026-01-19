@@ -1,26 +1,63 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+
+import { CreateUserDto, UpdateUserDto, QueryUserDto } from './dto/create-user.dto';
+import { UserEntity } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
+  ) {}
+ 
+
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    // console.log('createUserDto', createUserDto);
+    try {
+      const u = this.userRepository.create(createUserDto);
+      // console.log('new user entity', u);
+      const saved = this.userRepository.save(u);
+      return saved;
+    } catch (error) {
+      console.error('Error creating user entity:', error);
+      throw error;
+    }
   }
 
-  findAll() {
-    return `This action returns all users`;
+  findAll(query: QueryUserDto) {
+    console.log('query', query);
+    // return `This action returns all users`;
+    return this.userRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    // return `This action returns a #${id} user`;
+    return this.userRepository.findOneBy({ id });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    // return `This action updates a #${id} user`;
+    const result =  await this.userRepository.update(id, updateUserDto);
+
+    console.log('update result', result);
+    if (result.affected === 0) {
+      return false;
+    }
+    
+    return true;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    // return `This action removes a #${id} user`;
+    console.log('remove user id', id);
+    const result = await this.userRepository.delete(id);
+
+    console.log('remove result', result);
+    if (result.affected === 0) {
+      return false;
+    }
+    return true;
   }
 }

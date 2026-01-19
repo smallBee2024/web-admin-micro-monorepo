@@ -4,9 +4,11 @@
   "private": true,
   "description": "Minimal NestJS server for examples/servers",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "dev": "npm run start",
+    "start": "cross-env NODE_ENV=development nest start -w --path tsconfig.json",
+    "dev1": "ts-node-dev --respawn --transpile-only src/main.ts",
     "build": "tsc -p tsconfig.build.json",
-    "start": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "start2": "ts-node-dev --respawn --transpile-only src/main.ts",
     "start1": "node dist/main.js"
   },
   "dependencies": {
@@ -24,10 +26,13 @@
     "mysql2": "^3.15.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
+    "ts-node": "^10.9.2",
     "typeorm": "^0.3.27"
   },
   "devDependencies": {
-    "@types/node": "^20.11.30"
+    "@types/node": "^20.11.30",
+    "cross-env": "^10.1.0",
+    "tsconfig-paths": "^4.2.0"
   },
   "engines": {
     "node": ">=18"

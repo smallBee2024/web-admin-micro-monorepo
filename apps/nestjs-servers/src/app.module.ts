@@ -9,13 +9,17 @@ import { LoggerMiddleware } from './common/middleware/logger.middleware';
 // import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { FileOperationModule } from './modules/file-operation/file-operation.module';
 import config from './config';
-
-
-console.log('config11111', Object.values(config));
+import { TypeOrmModule } from '@nestjs/typeorm';
+// console.log('config11111', Object.values(config));
+// import { UserEntity } from './modules/users/entities/user.entity';
 
 
 @Module({
   imports: [
+    // 配置 Devtools 集成
+    // DevtoolsModule.register({
+    //   port: 4200,
+    // }),
     ConfigModule.forRoot({
       isGlobal: true,
       expandVariables: true,
@@ -23,10 +27,22 @@ console.log('config11111', Object.values(config));
       envFilePath: ['.env.local', `.env.${process.env.NODE_ENV}`, '.env'],
       load: [...Object.values(config)],
     }),
-    // 配置 Devtools 集成
-    // DevtoolsModule.register({
-    //   port: 4200,
-    // }),
+    TypeOrmModule.forRootAsync({
+      useFactory: () => ({
+        type: 'mysql',
+        host: 'localhost',
+        port: 3306,
+        username: 'root',
+        password: '12345678',
+        database: 'fishing_db',
+        // entities: ['./**/*.entity{.ts,.js}'],
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        // entities: [UserEntity],
+        // 
+        synchronize: true,
+      }),
+    }),
+    
     UsersModule,
     FileOperationModule
   ],
