@@ -48,6 +48,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Communication.vue"),
   },
+  // 大屏
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () => import("../views/Dashboard/index.vue"),
+  },
 ];
 
 // console.log("basename", basename);

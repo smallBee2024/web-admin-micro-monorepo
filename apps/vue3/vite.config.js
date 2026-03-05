@@ -4,11 +4,18 @@
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+
+// Tailwind CSS 插件 v40.0 版本后，官方推荐直接在 Vite 配置中使用 @tailwindcss/vite 插件来集成 Tailwind CSS，而不是通过 postcss.config.js 来配置。这种方式更简洁，且与 Vite 的插件系统更好地集成。
+// 如果你使用的是 Tailwind CSS v40.0 或更高版本，建议直接在 Vite 配置中使用 @tailwindcss/vite 插件，而不是在 postcss.config.js 中配置 Tailwind CSS。这种方式更简洁，且与 Vite 的插件系统更好地集成。
+// import tailwindcss from '@tailwindcss/vite'
 import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    // tailwindcss()
+  ],
   // 对应 vue.config.js 中的 publicPath
   base: "./",
   server: {

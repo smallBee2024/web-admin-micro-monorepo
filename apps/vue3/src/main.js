@@ -21,9 +21,15 @@ import "element-plus/es/components/popover/style/css";
 // import "ant-design-vue/es/modal/style/index.css";
 // import "ant-design-vue/es/popover/style/index.css";
 import "./index.css";
+import initFontSize from "./utils/setRootFont.ts";
 
-createApp(App)
-  .use(Tag)
+
+
+const app = createApp(App);
+// 初始化字体大小
+initFontSize();
+
+  app.use(Tag)
   .use(Button)
   .use(Dialog)
   .use(Select)

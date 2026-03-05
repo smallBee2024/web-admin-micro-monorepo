@@ -1,3 +1,9 @@
+/* @import "tailwindcss"; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   font-size: 17.5px;
@@ -11,8 +17,8 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: auto;
-  padding: 0 20px;
+  /* overflow: auto;
+  padding: 0 20px; */
   color: #2c3e50;
   --el-color-primary: #0239d0;
 }
