@@ -12,11 +12,11 @@ export class AnyExceptionFilter implements ExceptionFilter {
     // 获取异常响应信息
     let errorResponse: any = {};
     if (exception instanceof HttpException) {
-      const response = exception.getResponse();
-      console.log('response', response);
+      const _response = exception.getResponse();
+      console.log('_response', _response, 'resp', response);
 
       // 如果响应已经是对象，直接使用；否则包装
-      if (typeof response === 'object' && response !== null) {
+      if (typeof _response === 'object' && _response !== null) {
         // 在这里直接捕获到dto的错误信息，例如 创建用户接口的错误信息
         /**
           response = {
@@ -30,11 +30,11 @@ export class AnyExceptionFilter implements ExceptionFilter {
             ],
           }
          */
-        errorResponse = response;
+        errorResponse = _response;
       } else {
         errorResponse = {
           statusCode: exception.getStatus(),
-          message: response,
+          message: _response,
         };
       }
     } else {

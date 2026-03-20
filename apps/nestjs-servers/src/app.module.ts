@@ -5,6 +5,7 @@ import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/c
 import { ConfigModule } from '@nestjs/config';
 
 import { UsersModule } from './modules/users/users.module';
+// import { UsersController } from './modules/users/users.controller';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 // import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { FileOperationModule } from './modules/file-operation/file-operation.module';
@@ -52,7 +53,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // export class AppModule {}
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('users');
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes({
+        path: '/users/*',
+        method: RequestMethod.ALL,
+      })
+      // .forRoutes(UsersController);
   }
 }
 
