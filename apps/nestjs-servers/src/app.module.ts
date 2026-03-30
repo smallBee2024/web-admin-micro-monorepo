@@ -40,7 +40,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         // entities: [UserEntity],
         // 
-        synchronize: true,
+        synchronize: true, // 开发环境使用，生产环境需要关闭; 同步数据库结构
       }),
     }),
     

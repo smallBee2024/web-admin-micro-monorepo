@@ -13,7 +13,7 @@ export class UserEntity extends CommonEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ select: false }) // 设置为 false，表示该字段不参与查询
   password: string;
 
   // // nullable 设置为 true，表示该字段可以为空
